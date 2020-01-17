@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,12 @@ class MainActivity : AppCompatActivity(), OnCHolderClickListener {
 
         mRecyclerView = findViewById(R.id.cRecyclerView)
 
+        val saveButton: Button = findViewById(R.id.addButton)
+        saveButton.setOnClickListener {
+            val intent = Intent(this, DetailActivity::class.java)
+            startActivityForResult(intent, GO_BACK)
+        }
+
         val call = ContactClient.getContacts(20)
 
         call.enqueue(object : Callback<ContactList> {
@@ -61,6 +68,8 @@ class MainActivity : AppCompatActivity(), OnCHolderClickListener {
         selected = item
         startActivityForResult(intent, GO_BACK)
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

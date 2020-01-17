@@ -12,7 +12,7 @@ class Contact(
         val gender: String? = null,
         @SerializedName("name")
         @Expose
-        val name: Name? = null,
+        var name: Name? = null,
         @SerializedName("location")
         @Expose
         val location: Location? = null,
